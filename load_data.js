@@ -28,7 +28,7 @@ async function writing_data_to_the_json() {
 
 await writing_data_to_the_json();
 
-async function read_data_from_the_json() {
+export async function read_data_from_the_json() {
   try {
     const response = await fs.readFile("./data.txt", "utf-8");
     const data = JSON.parse(response);
