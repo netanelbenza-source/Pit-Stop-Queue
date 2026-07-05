@@ -1,31 +1,39 @@
 import { read_data_from_the_json } from "./load_data.js";
 
-async function Retrieving_name_of_race() {
+export async function Retrieving_name_of_race() {
   const reading_the_data = await read_data_from_the_json();
   const name_race = reading_the_data.raceName;
-  return name;
+  return name_race;
 }
 
-async function Retrieving_CurrentLapTotalLaps() {
+export async function Retrieving_CurrentLapTotalLaps() {
   const reading_the_data = await read_data_from_the_json();
-  const data = `${reading_the_data.currentlep}/${reading_the_data.totallaps}`;
-  return data;
+  const correntlep = reading_the_data.currentlep;
+  const totallep = reading_the_data.totallaps;
+  return `${correntlep}/${totallep}`;
 }
 
-async function Retrieving_total_cars_in_race() {
+export async function Retrieving_total_cars_in_race() {
   const reading_the_data = await read_data_from_the_json();
   const lisr_cars = reading_the_data.cars;
   return lisr_cars.length;
 }
 
-async function cars_waiting_for_pit_stop() {
+export async function car_onw_waiting_for_pit_stop() {
   const reading_the_data = await read_data_from_the_json();
   const lisr_cars = reading_the_data.cars;
   const cars_waiting = lisr_cars.filter((obj) => obj.status === "waiting");
-  return cars_waiting;
+  return cars_waiting[0];
 }
 
-async function Search_for_a_car_by_number(number) {
+export async function car_two_waiting_for_pit_stop() {
+  const reading_the_data = await read_data_from_the_json();
+  const lisr_cars = reading_the_data.cars;
+  const cars_waiting = lisr_cars.filter((obj) => obj.status === "waiting");
+  return cars_waiting[1];
+}
+
+export async function Search_for_a_car_by_number(number) {
   try {
     const reading_the_data = await read_data_from_the_json();
     const lisr_cars = reading_the_data.cars;
@@ -37,3 +45,5 @@ async function Search_for_a_car_by_number(number) {
     );
   }
 }
+
+console.log(await car_onw_waiting_for_pit_stop());
